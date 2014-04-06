@@ -1,0 +1,28 @@
+{
+  "name": "sadlyprofessional",
+  "version": "0.0.1",
+  "description": "Professional facing website to display my professional side",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "~3.6.0",
+    "gulp-sass": "~0.7.1"
+  },
+  "devDependencies": {
+    "gulp-notify": "^1.2.5",
+    "gulp-util": "^2.2.14",
+    "gulp-ruby-sass": "^0.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Jimmerz28/sadlyprofessional.git"
+  },
+  "author": "James Daniel Holby",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jimmerz28/sadlyprofessional/issues"
+  },
+  "homepage": "https://github.com/Jimmerz28/sadlyprofessional"
+}
