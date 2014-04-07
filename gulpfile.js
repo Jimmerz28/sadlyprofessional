@@ -7,11 +7,6 @@ var gulp = require("gulp"),
     rename = require("gulp-rename")
     minifyHTML = require("gulp-minify-html");
 
-gulp.task('default', function()
-{
-    // place code for your default task here
-});
-
 gulp.task("csslint", function()
 {
     gulp.src("src/css/**/*.css")
@@ -28,25 +23,19 @@ gulp.task("styles", function()
     .pipe(notify({ message: "Styles Task Complete" }));
 });
 
-gulp.task("minifyHTML", function()
+gulp.task("htmlcheck", function()
 {
     return gulp.src("html/**/*.html")
     .pipe(minifyHTML())
-    .pipe(notify({ message: "HTML Minification Complete" }))
-});
-
-gulp.task("w3c", function()
-{
-    return gulp.src("src/**/*.html")
     .pipe(w3cjs())
     .pipe(gulp.dest("src/"))
-    .pipe(notify({ message: "W3C Task Complete"}));
+    .pipe(notify({ message: "HTML Task Complete"}));
 });
 
 gulp.task("watch", function()
 {
     gulp.watch("sass/**/*.scss", ["styles"]);
     // Should probably be moved to the deploy task once we move to a template
-    gulp.watch("html/**/*.html", ["minifyHTML", "w3c"]);
+    gulp.watch("html/**/*.html", ["htmlcheck"]);
     gulp.watch("src/css/**/*.css", ["csslint"]);
 });
