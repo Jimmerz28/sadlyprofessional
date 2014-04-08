@@ -1,5 +1,54 @@
+$someBlue: #2A96B1;
+
+// Lato is the font
+
 html, body
 {
     margin: 0;
     padding: 0;
+}
+
+a:link, a:visited, a:active, a:hover
+{
+    text-decoration: none;
+    color: inherit;
+}
+
+.blue-element
+{
+    background-color: $someBlue;
+    padding: 1em 2em;
+}
+
+.white
+{
+    color: white;
+}
+
+.lowercase
+{
+    text-transform: lowercase;
+}
+
+.uppercase
+{
+    text-transform: uppercase;
+}
+
+.flexRow
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.flexThird
+{
+    flex-grow: 3;
+}
+
+.textAlignRight
+{
+    text-align: right;
 }
