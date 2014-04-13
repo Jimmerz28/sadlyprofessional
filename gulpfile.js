@@ -7,11 +7,15 @@ var gulp = require("gulp"),
     rename = require("gulp-rename")
     minifyHTML = require("gulp-minify-html");
 
-gulp.task("csslint", function()
+var distFolder = "dist";
+
+gulp.task("build", ["csslint","htmlcheck"], function(){});
+
+gulp.task("csslint", ["styles"], function()
 {
-    gulp.src("src/css/**/*.css")
+    gulp.src(distFolder+"/css/**/*.css")
     .pipe(csslint())
-    .pipe(csslint.reporter());
+    .pipe(csslint.reporter())
 });
 
 gulp.task("styles", function()
@@ -19,8 +23,8 @@ gulp.task("styles", function()
     return gulp.src("sass/**/*.scss")
     .pipe(sass({ style: "compressed" }).on("error", gutil.log))
     .pipe(rename({ extname: ".min.css" }))
-    .pipe(gulp.dest("src/css"))
-    .pipe(notify({ message: "Styles Task Complete" }));
+    .pipe(gulp.dest( distFolder + "/css"))
+    .pipe(notify({ message: "Styles Task Complete!" }));
 });
 
 gulp.task("htmlcheck", function()
@@ -28,14 +32,14 @@ gulp.task("htmlcheck", function()
     return gulp.src("html/**/*.html")
     .pipe(minifyHTML())
     .pipe(w3cjs())
-    .pipe(gulp.dest("src/"))
-    .pipe(notify({ message: "HTML Task Complete"}));
+    .pipe(gulp.dest(distFolder + "/"))
+    .pipe(notify({ message: "HTML Task Complete!"}));
 });
 
 gulp.task("watch", function()
 {
-    gulp.watch("sass/**/*.scss", ["styles"]);
+    gulp.watch("sass/**/*.scss", ["csslint"]);
     // Should probably be moved to the deploy task once we move to a template
     gulp.watch("html/**/*.html", ["htmlcheck"]);
-    gulp.watch("src/css/**/*.css", ["csslint"]);
+    // gulp.watch(distFolder + "/css/**/*.css", ["csslint"]);
 });
