@@ -40,11 +40,37 @@ p, h1
 
 .otherSections
 {
-    padding: $headerPadding;
+    padding: $headerPadding 9em;
     text-align: center;
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: .3em;
+}
+
+.workImages
+{
+    & img
+    {
+        margin: .5em;
+        border: 1px $someBlue solid;
+    }
+    
+    & a
+    {
+        display: inline-block;
+        height: 100%;
+        margin-bottom: 3em;
+        font-weight: 400;
+        
+    }
+    
+    & span
+    {
+        display: block;
+        text-align: left;
+        color: #D46B4E;
+        margin-left: .5em;
+    }
 }
 
 .whiteSection
