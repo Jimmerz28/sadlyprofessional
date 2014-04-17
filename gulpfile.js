@@ -4,23 +4,34 @@ var gulp = require("gulp"),
     gutil = require("gulp-util"),
     w3cjs = require("gulp-w3cjs"),
     csslint = require("gulp-csslint"),
-    rename = require("gulp-rename")
-    minifyHTML = require("gulp-minify-html");
+    rename = require("gulp-rename"),
+    minifyHTML = require("gulp-minify-html"),
+    changed = require("gulp-changed"),
+    imagemin = require("gulp-imagemin");
 
 var distFolder = "dist";
+var srcFolder = "src";
 
-gulp.task("build", ["csslint","htmlcheck"], function(){});
+gulp.task("build", ["imagemin", "csslint","htmlcheck"], function(){});
 
 gulp.task("csslint", ["styles"], function()
 {
-    gulp.src(distFolder+"/css/**/*.css")
+    return gulp.src(distFolder+"/css/**/*.css")
     .pipe(csslint())
     .pipe(csslint.reporter())
 });
 
+gulp.task("imagemin", function()
+{
+    return gulp.src(srcFolder + "/images/**/*")
+    .pipe(changed(distFolder + "/images"))
+    .pipe(imagemin())
+    .pipe(gulp.dest(distFolder + "/images"));
+});
+
 gulp.task("styles", function()
 {
-    return gulp.src("sass/**/*.scss")
+    return gulp.src(srcFolder + "/sass/**/*.scss")
     .pipe(sass({ style: "compressed" }).on("error", gutil.log))
     .pipe(rename({ extname: ".min.css" }))
     .pipe(gulp.dest( distFolder + "/css"))
@@ -29,7 +40,7 @@ gulp.task("styles", function()
 
 gulp.task("htmlcheck", function()
 {
-    return gulp.src("html/**/*.html")
+    return gulp.src(srcFolder + "/html/**/*.html")
     .pipe(minifyHTML())
     .pipe(w3cjs())
     .pipe(gulp.dest(distFolder + "/"))
@@ -38,8 +49,8 @@ gulp.task("htmlcheck", function()
 
 gulp.task("watch", function()
 {
-    gulp.watch("sass/**/*.scss", ["csslint"]);
+    gulp.watch(srcFolder + "/sass/**/*.scss", ["csslint"]);
     // Should probably be moved to the deploy task once we move to a template
-    gulp.watch("html/**/*.html", ["htmlcheck"]);
-    // gulp.watch(distFolder + "/css/**/*.css", ["csslint"]);
+    gulp.watch(srcFolder + "/html/**/*.html", ["htmlcheck"]);
+    gulp.watch(srcFolder + "/images/**/*", ["imagemin"]);
 });
