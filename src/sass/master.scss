@@ -1,0 +1,148 @@
+$someBlue: #2A96B1;
+$someGray: #999999;
+$headerPadding: 3.5em;
+
+html, body
+{
+    margin: 0;
+    padding: 0;
+    font-family: "Lato", sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    background-color: #FCFEFD;
+}
+
+a:link, a:visited, a:active, a:hover
+{
+    text-decoration: none;
+    color: inherit;
+}
+
+section
+{
+    position: relative;
+}
+
+p, h1
+{
+    margin: 0;
+    padding: 0;
+    font-weight: inherit;
+}
+
+// Let's try bullshit classes this time
+
+.blue-element
+{
+    background-color: $someBlue;
+    padding: 1em 2em;
+}
+
+.otherSections
+{
+    padding: $headerPadding;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: .3em;
+}
+
+.whiteSection
+{
+    color: $someBlue;
+}
+
+.darkGraySection
+{
+    background-color: #D3D3D3;
+}
+
+.lightGraySection
+{
+    background-color: #F1F1F1;
+}
+
+.initialBlurb
+{
+    position: absolute;
+    bottom: 2em;
+    width: 13em;
+    margin-left: 171px;
+    display: block;
+}
+
+.nameAnchor
+{
+    &:after
+    {
+        content: ".";
+        font-weight: 700;
+    }
+}
+
+.grayLinks a
+{
+    color: $someGray;
+    margin-right: 2em;
+}
+
+.white
+{
+    & span
+    {
+        font-weight: bold;
+    }
+    
+    color: white;
+    font-weight: 100;
+}
+
+.large
+{
+    font-size: 22pt;
+    
+    p
+    {
+        font-size: 16pt;
+    }
+}
+
+.lowercase
+{
+    text-transform: lowercase;
+}
+
+.uppercase
+{
+    text-transform: uppercase;
+}
+
+.flexRow
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+}
+
+.fullImageBackground
+{
+    background-image: url("../images/tryMe.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-height:100%;
+    width: 100%;
+    // http://pacoup.com/2011/06/12/list-of-true-169-resolutions/
+    height: 432px;
+}
+
+.flexThird
+{
+    flex-grow: 3;
+}
+
+.textAlignRight
+{
+    text-align: right;
+}
