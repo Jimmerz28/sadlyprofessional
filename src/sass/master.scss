@@ -1,5 +1,7 @@
 $someBlue: #2A96B1;
 $someGray: #999999;
+$someDarkerGray: #CCCCCC;
+$someLigherGray: #F1F1F1;
 $headerPadding: 3.5rem;
 
 html, body, p
@@ -91,12 +93,12 @@ h1
 
 .darkGraySection
 {
-    background-color: #D3D3D3;
+    background-color: $someDarkerGray;
 }
 
 .lightGraySection
 {
-    background-color: #F1F1F1;
+    background-color: $someLigherGray;
 }
 
 .textBlob
