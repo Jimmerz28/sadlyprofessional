@@ -10,6 +10,7 @@ html, body
     font-weight: normal;
     font-style: normal;
     background-color: #FCFEFD;
+    font-size: 14pt;
 }
 
 a:link, a:visited, a:active, a:hover
@@ -35,7 +36,7 @@ p, h1
 .blue-element
 {
     background-color: $someBlue;
-    padding: 1em 2em;
+    padding: 1rem 2rem;
 }
 
 .otherSections
@@ -45,6 +46,11 @@ p, h1
     text-transform: uppercase;
     font-weight: 700;
     letter-spacing: .3em;
+}
+
+.bottomMe
+{
+    margin-bottom: $headerPadding;
 }
 
 .workImages
@@ -88,13 +94,29 @@ p, h1
     background-color: #F1F1F1;
 }
 
+.textBlob
+{
+    line-height: 2rem;
+}
+
 .initialBlurb
 {
     position: absolute;
     bottom: 2em;
-    width: 13em;
-    margin-left: 171px;
+    margin-left: 10.8rem;
     display: block;
+    width: 30rem;
+    
+    p
+    {
+        font-size: 1rem;
+    }
+    
+    p:first-of-type
+    {
+        font-size: 1.5rem;
+        padding-bottom: 1rem;
+    }
 }
 
 .nameAnchor
@@ -121,16 +143,6 @@ p, h1
     
     color: white;
     font-weight: 100;
-}
-
-.large
-{
-    font-size: 22pt;
-    
-    p
-    {
-        font-size: 16pt;
-    }
 }
 
 .lowercase
