@@ -1,16 +1,20 @@
 $someBlue: #2A96B1;
 $someGray: #999999;
-$headerPadding: 3.5em;
+$headerPadding: 3.5rem;
 
-html, body
+html, body, p
 {
     margin: 0;
     padding: 0;
     font-family: "Lato", sans-serif;
-    font-weight: normal;
-    font-style: normal;
-    background-color: #FCFEFD;
+    font-weight: inherit;
+    font-style: inherit;
     font-size: 14pt;
+}
+
+body
+{
+    background-color: #FCFEFD;
 }
 
 a:link, a:visited, a:active, a:hover
@@ -24,11 +28,12 @@ section
     position: relative;
 }
 
-p, h1
+h1
 {
     margin: 0;
     padding: 0;
     font-weight: inherit;
+    padding-bottom: $headerPadding;
 }
 
 // Let's try bullshit classes this time
