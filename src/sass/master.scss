@@ -169,6 +169,14 @@ h1
     align-items: center;
 }
 
+.halfColumns
+{
+    div
+    {
+        flex: 0 0 50%;
+    }
+}
+
 .fullImageBackground
 {
     background-image: url("../images/tryMe.jpg");
