@@ -7,50 +7,54 @@ var gulp = require("gulp"),
     rename = require("gulp-rename"),
     minifyHTML = require("gulp-minify-html"),
     changed = require("gulp-changed"),
-    imagemin = require("gulp-imagemin");
+    imagemin = require("gulp-imagemin")
+    debug = require("gulp-debug");
 
-var distFolder = "dist";
-var srcFolder = "src";
+var paths =
+{
+    dist: "dist",
+    src: "src"
+}
 
 gulp.task("build", ["imagemin", "csslint","htmlcheck"], function(){});
 
 gulp.task("csslint", ["styles"], function()
 {
-    return gulp.src(distFolder+"/css/**/*.css")
+    return gulp.src("./css/**/*.css", {cwd: paths.dist})
     .pipe(csslint())
     .pipe(csslint.reporter())
 });
 
 gulp.task("imagemin", function()
 {
-    return gulp.src(srcFolder + "/images/**/*")
-    .pipe(changed(distFolder + "/images"))
+    return gulp.src("./images/**/*", {cwd: paths.src})
+    .pipe(changed("./images", {cwd: paths.dist}))
     .pipe(imagemin())
-    .pipe(gulp.dest(distFolder + "/images"));
+    .pipe(gulp.dest("./images", {cwd: paths.dist}));
 });
 
 gulp.task("styles", function()
 {
-    return gulp.src(srcFolder + "/sass/**/*.scss")
+    return gulp.src("./sass/**/*.scss", {cwd: paths.src})
     .pipe(sass({ style: "compressed" }).on("error", gutil.log))
     .pipe(rename({ extname: ".min.css" }))
-    .pipe(gulp.dest( distFolder + "/css"))
+    .pipe(gulp.dest("./css", {cwd: paths.dist}))
     .pipe(notify({ message: "Styles Task Complete!" }));
 });
 
 gulp.task("htmlcheck", function()
 {
-    return gulp.src(srcFolder + "/html/**/*.html")
+    return gulp.src("./html/**/*.html", {cwd: paths.src})
     .pipe(minifyHTML())
     .pipe(w3cjs())
-    .pipe(gulp.dest(distFolder + "/"))
+    .pipe(gulp.dest("./", {cwd: paths.dist}))
     .pipe(notify({ message: "HTML Task Complete!"}));
 });
 
 gulp.task("watch", function()
 {
-    gulp.watch(srcFolder + "/sass/**/*.scss", ["csslint"]);
+    gulp.watch("./sass/**/*.scss", {cwd: paths.src, read: false}, ["csslint"]);
     // Should probably be moved to the deploy task once we move to a template
-    gulp.watch(srcFolder + "/html/**/*.html", ["htmlcheck"]);
-    gulp.watch(srcFolder + "/images/**/*", ["imagemin"]);
+    gulp.watch("./html/**/*.html", {cwd: paths.src, read: false}, ["htmlcheck"]);
+    gulp.watch("./images/**/*", {cwd: paths.src, read: false}, ["imagemin"]);
 });
