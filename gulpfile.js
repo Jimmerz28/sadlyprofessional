@@ -7,8 +7,7 @@ var gulp = require("gulp"),
     rename = require("gulp-rename"),
     minifyHTML = require("gulp-minify-html"),
     changed = require("gulp-changed"),
-    imagemin = require("gulp-imagemin")
-    debug = require("gulp-debug");
+    imagemin = require("gulp-imagemin");
 
 var paths =
 {
@@ -16,7 +15,13 @@ var paths =
     src: "src"
 }
 
-gulp.task("build", ["imagemin", "csslint","htmlcheck"], function(){});
+gulp.task("build", ["imagemin","csslint","htmlcheck","copyfonts"], function(){});
+
+gulp.task("copyfonts", function()
+{
+    return gulp.src("./fonts/*", {cwd: paths.src})
+    .pipe(gulp.dest("./fonts", {cwd: paths.dist}));
+});
 
 gulp.task("csslint", ["styles"], function()
 {
