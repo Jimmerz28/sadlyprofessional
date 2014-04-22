@@ -17,7 +17,9 @@
     "gulp-minify-html": "^0.1.1",
     "gulp-clean": "^0.2.4",
     "gulp-changed": "~0.3.0",
-    "gulp-imagemin": "~0.2.0"
+    "gulp-imagemin": "~0.2.0",
+    "gulp-jshint": "~1.5.3",
+    "jshint-stylish": "~0.1.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
