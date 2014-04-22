@@ -1,21 +1,23 @@
 var gulp = require("gulp"),
-    sass = require("gulp-ruby-sass")
-    notify = require("gulp-notify")
+    sass = require("gulp-ruby-sass"),
+    notify = require("gulp-notify"),
     gutil = require("gulp-util"),
     w3cjs = require("gulp-w3cjs"),
     csslint = require("gulp-csslint"),
     rename = require("gulp-rename"),
     minifyHTML = require("gulp-minify-html"),
     changed = require("gulp-changed"),
-    imagemin = require("gulp-imagemin");
+    imagemin = require("gulp-imagemin"),
+    jshint = require("gulp-jshint"),
+    stylish = require('jshint-stylish');
 
 var paths =
 {
     dist: "dist",
     src: "src"
-}
+};
 
-gulp.task("build", ["imagemin","csslint","htmlcheck","copyfonts"], function(){});
+gulp.task("build", ["imagemin", "csslint", "htmlvalidation", "copyfonts"], function(){});
 
 gulp.task("copyfonts", function()
 {
@@ -25,9 +27,9 @@ gulp.task("copyfonts", function()
 
 gulp.task("csslint", ["styles"], function()
 {
-    return gulp.src("./css/**/*.css", {cwd: paths.dist})
+    return gulp.src("./css/*.css", {cwd: paths.dist})
     .pipe(csslint())
-    .pipe(csslint.reporter())
+    .pipe(csslint.reporter());
 });
 
 gulp.task("imagemin", function()
@@ -47,19 +49,35 @@ gulp.task("styles", function()
     .pipe(notify({ message: "Styles Task Complete!" }));
 });
 
-gulp.task("htmlcheck", function()
+gulp.task("htmlvalidation", function()
 {
     return gulp.src("./html/**/*.html", {cwd: paths.src})
     .pipe(minifyHTML())
     .pipe(w3cjs())
     .pipe(gulp.dest("./", {cwd: paths.dist}))
-    .pipe(notify({ message: "HTML Task Complete!"}));
+    .pipe(notify({ message: "HTML Minification Complete!"}));
+});
+
+gulp.task("htmlminification", function()
+{
+    return gulp.src("./html/**/*.html", {cwd: paths.src})
+    .pipe(minifyHTML())
+    .pipe(gulp.dest("./", {cwd: paths.dist}))
+    .pipe(notify({ message: "HTML Minification Complete!"}));
+});
+
+gulp.task("gulpvalidate", function()
+{
+    return gulp.src("./gulpfile.js")
+    .pipe(jshint())
+    .pipe(jshint.reporter(stylish));
 });
 
 gulp.task("watch", function()
 {
-    gulp.watch("./sass/**/*.scss", {cwd: paths.src, read: false}, ["csslint"]);
+    gulp.watch("./sass/**/*.scss", {cwd: paths.src, read: false}, ["styles"]);
     // Should probably be moved to the deploy task once we move to a template
-    gulp.watch("./html/**/*.html", {cwd: paths.src, read: false}, ["htmlcheck"]);
+    gulp.watch("./html/**/*.html", {cwd: paths.src, read: false}, ["htmlminification"]);
     gulp.watch("./images/**/*", {cwd: paths.src, read: false}, ["imagemin"]);
+    gulp.watch("./gulpfile.js", ["gulpvalidate"]);
 });
