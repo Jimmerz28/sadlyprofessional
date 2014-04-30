@@ -227,3 +227,10 @@ h1
 {
     text-align: right;
 }
+
+::-moz-progress-bar
+{
+    background-color: $someBlue;
+    border: none;
+    height: 1.5rem;
+}
