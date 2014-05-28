@@ -9,12 +9,18 @@ var gulp = require("gulp"),
     changed = require("gulp-changed"),
     imagemin = require("gulp-imagemin"),
     jshint = require("gulp-jshint"),
-    stylish = require('jshint-stylish');
+    stylish = require("jshint-stylish")
+    jade = require("gulp-jade");
 
 var paths =
 {
     dist: "dist",
-    src: "src"
+    src: "src",
+    fonts: "./fonts/**/*.{svg,eot,woff,ttf}",
+    styles: "./sass/**/*.sass",
+    images: "./images/**/*.{svg,png,jpg}",
+    scripts: "./js/**/*.js",
+    templates: "./templates/**/*.jade"
 };
 
 gulp.task("build", ["imagemin", "csslint", "htmlvalidation", "copyfonts"], function(){});
@@ -64,6 +70,13 @@ gulp.task("htmlminification", function()
     .pipe(minifyHTML())
     .pipe(gulp.dest("./", {cwd: paths.dist}))
     .pipe(notify({ message: "HTML Minification Complete!"}));
+});
+
+gulp.task("jadeTransform", function()
+{
+    return gulp.src(paths.templates, {cwd: paths.src})
+    .pipe(jade())
+    .pipe(gulp.dest("./", {cwd: paths.dist}));
 });
 
 gulp.task("gulpvalidate", function()
