@@ -47,6 +47,16 @@ ul
 
 /* Classes follow */
 
+.arrowHover:hover:after
+{
+    content: url("../images/hoverArrow.svg");
+    width: 100px;
+    display: inline;
+    position: absolute;
+    margin-top: -.8rem;
+    margin-left: 1rem;
+}
+
 .flexColumnCenter
 {
     display: flex;
@@ -84,7 +94,7 @@ ul
 {
     font-weight: 200;
     font-size: 5.625rem;
-    
+
     &::before
     {
         content: ".";
