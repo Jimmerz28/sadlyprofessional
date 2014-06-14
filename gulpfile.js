@@ -1,6 +1,5 @@
 var gulp = require("gulp"),
     sass = require("gulp-ruby-sass"),
-    notify = require("gulp-notify"),
     gutil = require("gulp-util"),
     w3cjs = require("gulp-w3cjs"),
     csslint = require("gulp-csslint"),
@@ -51,8 +50,7 @@ gulp.task("styles", function()
     return gulp.src("./sass/**/*.scss", {cwd: paths.src})
     .pipe(sass({ style: "compressed" }).on("error", gutil.log))
     .pipe(rename({ extname: ".min.css" }))
-    .pipe(gulp.dest("./css", {cwd: paths.dist}))
-    .pipe(notify({ message: "Styles Task Complete!" }));
+    .pipe(gulp.dest("./css", {cwd: paths.dist}));
 });
 
 gulp.task("htmlvalidation", function()
@@ -60,16 +58,14 @@ gulp.task("htmlvalidation", function()
     return gulp.src("./html/**/*.html", {cwd: paths.src})
     .pipe(minifyHTML())
     .pipe(w3cjs())
-    .pipe(gulp.dest("./", {cwd: paths.dist}))
-    .pipe(notify({ message: "HTML Minification Complete!"}));
+    .pipe(gulp.dest("./", {cwd: paths.dist}));
 });
 
 gulp.task("htmlminification", function()
 {
     return gulp.src("./html/**/*.html", {cwd: paths.src})
     .pipe(minifyHTML())
-    .pipe(gulp.dest("./", {cwd: paths.dist}))
-    .pipe(notify({ message: "HTML Minification Complete!"}));
+    .pipe(gulp.dest("./", {cwd: paths.dist}));
 });
 
 gulp.task("jadeTransform", function()
