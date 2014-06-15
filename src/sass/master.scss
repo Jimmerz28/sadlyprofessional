@@ -1,5 +1,6 @@
 $babyBlue: #00CCFF;
 $someGray: #F5F5F5;
+$orange: #FF6633;
 
 html, body, ul, h1
 {
@@ -46,6 +47,16 @@ ul
 }
 
 /* Classes follow */
+.orangeHeaders
+{
+    text-transform: uppercase;
+    color: $orange;
+}
+
+.typicalSection
+{
+    padding-bottom: 220px;
+}
 
 .arrowHover:hover:after
 {
@@ -88,6 +99,24 @@ ul
 .bold
 {
     font-weight: bold;
+}
+
+.work
+{
+    & img
+    {
+        height: 219px;
+        width: 290px;        
+    }
+}
+
+.workImages
+{
+    display: flex;
+    flex: 0 0 950px;
+    flex-direction: row;
+    flex-flow: row wrap;
+    margin-left: 50px;
 }
 
 .words
