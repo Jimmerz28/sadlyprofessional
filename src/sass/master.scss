@@ -9,6 +9,8 @@ $red: #FF3333;
 $blue: #00CCFF;
 $pink: #FF00CC;
 
+$typicalWidth: 1100px;
+
 $colorList: $orange, $green, $purple, $red, $blue, $pink;
 
 @each $color in $colorList
@@ -70,18 +72,33 @@ ul
     list-style: none;
 }
 
+progress
+{
+    width: 100%;
+}
+
 /* Classes follow */
 .orangeHeaders
 {
     /* Top padding should be 20 (same as the margin between each work til, but because of shitty font rendering issues the space above the glyphs needs to be accounted for  */
-    padding: 10px 30px 0 0;
     text-transform: uppercase;
     color: $orange;
+    flex: 0 0 9.3rem;
+    margin-top: -.59rem;
 }
 
 .typicalSection
 {
     padding-bottom: 220px;
+    width: 950px;
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+.divNextToHeaders
+{
+    width: $typicalWidth - 150;
 }
 
 .arrowHover:hover:after
@@ -129,7 +146,6 @@ ul
 
 .work
 {
-    margin: 20px;
     background-color: white;
     padding: 5px 5px 0 5px;
     border: 5px solid transparent;
@@ -147,19 +163,6 @@ ul
     {
         height: 219px;
         width: 290px;        
-    }
-}
-
-.workImages
-{
-    display: flex;
-    flex: 0 0 1100px;
-    flex-direction: row;
-    flex-flow: row wrap;
-        
-    p
-    {
-        margin: 0;
     }
 }
 
