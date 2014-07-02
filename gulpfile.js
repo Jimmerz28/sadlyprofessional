@@ -8,8 +8,9 @@ var gulp = require("gulp"),
     changed = require("gulp-changed"),
     imagemin = require("gulp-imagemin"),
     jshint = require("gulp-jshint"),
-    stylish = require("jshint-stylish")
-    jade = require("gulp-jade");
+    stylish = require("jshint-stylish"),
+    jade = require("gulp-jade"),
+    prefix = require("gulp-autoprefixer");
 
 var paths =
 {
@@ -73,6 +74,13 @@ gulp.task("jadeTransform", function()
     return gulp.src(paths.templates, {cwd: paths.src})
     .pipe(jade())
     .pipe(gulp.dest("./", {cwd: paths.dist}));
+});
+
+gulp.task("prefixer", function()
+{
+    return gulp.src("./css", {cwd: paths.dist})
+    .pipe(prefix())
+    .pipe(gulp.dest("./css", {cwd: paths.dist}));
 });
 
 gulp.task("gulpvalidate", function()

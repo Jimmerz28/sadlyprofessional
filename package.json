@@ -8,6 +8,7 @@
     "gulp-sass": "~0.7.1"
   },
   "devDependencies": {
+    "gulp-autoprefixer": "0.0.8",
     "gulp-changed": "~0.3.0",
     "gulp-clean": "^0.2.4",
     "gulp-csslint": "^0.1.3",
