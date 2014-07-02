@@ -35,7 +35,7 @@ $colorList: $orange, $green, $purple, $red, $blue, $pink;
     }
 }
 
-html, body, ul, h1
+html, body, ul, h1, p
 {
     padding: 0;
     margin: 0;
@@ -92,15 +92,15 @@ ul
 .typicalSection
 {
     padding-bottom: 220px;
-    width: 950px;
     display: flex;
     flex-direction: row;
     margin: 0 auto;
+    justify-content: center;
 }
 
 .divNextToHeaders
 {
-    width: $typicalWidth - 150;
+    flex: 0 0 1010px;
 }
 
 .arrowHover:hover:after
@@ -113,18 +113,22 @@ ul
     margin-left: 1rem;
 }
 
-.flexColumnCenter
+.centerFlexAlign
+{
+    align-items: center;
+}
+
+.flexcolumn
 {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .flexrow
 {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-flow: row wrap;
+    justify-content: space-between;
 }
 
 .siteHeader
@@ -152,18 +156,19 @@ ul
     padding: 5px 5px 0 5px;
     border: 5px solid transparent;
     text-align: center;
+    margin-bottom: 40px;
     
     p
     {
         text-transform: uppercase;
-        padding-top: .3rem;
+        padding-top: .4rem;
         padding-bottom: .8rem;
         font-weight: 900;
     }
     
     & img
     {
-        height: 219px;
+        height: 215px;
         width: 290px;        
     }
 }
