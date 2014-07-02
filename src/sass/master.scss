@@ -1,3 +1,5 @@
+$typicalWidth: 1100px;
+
 $babyBlue: #00CCFF;
 $someGray: #F5F5F5;
 
@@ -9,8 +11,13 @@ $red: #FF3333;
 $blue: #00CCFF;
 $pink: #FF00CC;
 
-$typicalWidth: 1100px;
+// Progress Bar Colors
+$borderWhite: #FFFFFF;
+$progressHeight: 3.75rem;
+$notFullBarColor: $blue;
+$fullBarColor: $purple;
 
+// Project Thumbnails
 $colorList: $orange, $green, $purple, $red, $blue, $pink;
 
 @each $color in $colorList
@@ -70,11 +77,6 @@ nav
 ul
 {
     list-style: none;
-}
-
-progress
-{
-    width: 100%;
 }
 
 /* Classes follow */
@@ -176,4 +178,31 @@ progress
         content: ".";
         margin: 0 .1em;
     }
+}
+
+/* Skills Section */
+progress
+{
+    border: none;
+    background: none;
+    // Should give us about 58px tall
+    height: $progressHeight;
+    
+    &:not(:last-child)
+    {
+        margin-bottom: 10px;
+    }
+}
+
+/* Interior Bar Styles */
+progress::-moz-progress-bar
+{
+    background-color: $fullBarColor;
+    border: $borderWhite solid 5px;
+}
+
+// If they're full then make them purple
+progress:not([value="100"])::-moz-progress-bar
+{
+    background-color: $notFullBarColor;
 }
